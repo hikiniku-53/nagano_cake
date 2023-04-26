@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
 
   devise_for :customers,skip: [:passwords], controllers: {
-    resistrations: "public/resistrations",
+    registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
