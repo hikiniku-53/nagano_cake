@@ -31,7 +31,38 @@
       </row>
 
       <row>
-        <h1>新着商品</h1>
+        <div class="d-flex new-items">
+
+          <div class="item">
+            <div>picture</div>
+            <div>name</div>
+            <div>price</div>
+          </div>
+
+          <div class="item">
+            <div>picture</div>
+            <div>name</div>
+            <div>price</div>
+          </div>
+
+          <div class="item">
+            <div>picture</div>
+            <div>name</div>
+            <div>price</div>
+          </div>
+
+          <div class="item">
+            <div>picture</div>
+            <div>name</div>
+            <div>price</div>
+          </div>
+        </div>
+      </row>
+
+      <row>
+        <%= link_to items_path do %>
+          <p class="text-right">全ての商品を見る ＞</p>
+        <% end %>
       </row>
 
     </div>
