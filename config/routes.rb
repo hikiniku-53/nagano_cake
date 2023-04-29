@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
     #public/items
     resources :items, only: [:index, :show]
-    get '/items/genre/:genre_id' => 'items#genre_search'
+    get '/items/genre/:genre_id' => 'items#genre_search', as: 'genre_search'
     get '/items/search' => 'items#search'
 
     #public/customers

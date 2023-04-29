@@ -1,2 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.jumbotron {
+  background-image: assets/images("patissier.jpg");
+  background-size: cover;
+}
