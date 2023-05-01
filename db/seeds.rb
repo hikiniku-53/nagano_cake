@@ -9,5 +9,5 @@
 admin = Admin.create!(
   email: "admin@gmail.com",
   password: "nagano_cake",
-  admin: true
+  password_confirmation: "nagano_cake"
   )

@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav-item m-3">
-                  <%= link_to  destroy_admin_session_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                  <%= link_to  destroy_admin_session_path, method: :delete, class: 'nav-link px-3 btn btn-outline-secondary' do %>
                     ログアウト
                   <% end %>
                 </li>
@@ -81,7 +81,7 @@
                   </li>
 
                   <li class="nav-item m-3">
-                    <%= link_to destroy_admin_session_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                    <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link px-3 btn btn-outline-secondary' do %>
                       ログアウト
                     <% end %>
                   </li>
