@@ -27,11 +27,64 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-              <% if customer_signed_in? %>
+              <% if admin_signed_in? %>
+
+                <li class="nav-item m-3">
+                  <%= link_to admin_items_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                    商品一覧
+                  <% end %>
+                </li>
+
+                <li class="nav-item m-3">
+                  <%= link_to admin_customers_path, class: 'nav-link px-3 btn btn btn-outline-secondary' do %>
+                    会員一覧
+                  <% end %>
+                </li>
+
+                <li class="nav-item m-3">
+                  <%= link_to admin_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                    注文履歴一覧
+                  <% end %>
+                </li>
+
+                <li class="nav-item m-3">
+                  <%= link_to admin_genres_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                    ジャンル一覧
+                  <% end %>
+                </li>
+
+                <li class="nav-item m-3">
+                  <%= link_to  destroy_admin_session_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                    ログアウト
+                  <% end %>
+                </li>
 
               <% else %>
 
                 <% if customer_signed_in? %>
+                  <li class="nav-item m-3">
+                    <%= link_to customers_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                      マイページ
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item m-3">
+                    <%= link_to items_path, class: 'nav-link px-3 btn btn btn-outline-secondary' do %>
+                      商品一覧
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item m-3">
+                    <%= link_to cart_items_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                      カート
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item m-3">
+                    <%= link_to destroy_admin_session_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
+                      ログアウト
+                    <% end %>
+                  </li>
 
                 <% else %>
                   <li class="nav-item m-3">
