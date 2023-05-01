@@ -1,7 +1,7 @@
 <div class="container">
 <h2>管理者ログイン</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_with model: @admin, url: session_path do |f| %>
   <table class="table">
     <!--email_form-->
     <tr>
