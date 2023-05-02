@@ -1,1 +1,51 @@
-<h1>admin/items/index</h1>
+<div class="container">
+
+  <h2>商品一覧</h2>
+
+  <table class="table">
+
+    <tbody>
+
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+        <th></th>
+      </tr>
+
+      <% @items.each do |item| %>
+
+        <tr>
+          <td>
+            <%= item.id %>
+          </td>
+
+          <td>
+            <%= link_to admin_item_path(item.id) do %>
+              <%= item.name %>
+            <% end %>
+          </td>
+
+          <td>
+            <%= item.price %>
+          </td>
+
+          <td>
+            <%= Genre.find(item.genre_id).name %>
+          </td>
+
+          <td>
+            <%= item.is_active %>
+          </td>
+          <td></td>
+        </tr>
+
+      <% end %>
+
+    </tbody>
+
+  </table>
+
+</div>

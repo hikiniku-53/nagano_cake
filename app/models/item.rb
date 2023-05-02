@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-  hs_one_attached :image
+  has_one_attached :image
 end
