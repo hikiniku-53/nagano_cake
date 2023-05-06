@@ -1,1 +1,17 @@
-<h1>customers/confirmation</h1>
+<div class="container">
+  <h3>本当に退会しますか？</h3>
+  <p>
+    退会すると、会員登録画面や<br>
+    これまでの購入履歴が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+
+  <div>
+    <%= link_to customers_path do %>
+      <div class="btn btn-primary">退会しない</div>
+    <% end %>
+
+    <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
+  </div>
+
+</div>

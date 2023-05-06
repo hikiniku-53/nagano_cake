@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     get '/customers/edit' => 'customers#edit'
     patch '/customers' => 'customers#update'
     get '/customers/unsubscribe' => 'customers#confirmation'
-    patch '/customers' => 'customers#withdrawwal'
+    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
 
     #public/addresses
     resources :addresses, only: [:index, :create, :edit, :update, :destroy]

@@ -1,51 +1,68 @@
 <div class="container">
+  
+  <div class="row justify-content-between">
+    <div class="d-flex">
+      <h2>商品一覧</h2>
+      <p>(全 <%= Item.count %> 件)</p>
+    </div>
+    
+    <div>
+      <%= link_to new_admin_item_path do %>
+        <div class="btn btn-lg bg-white shadow-sm rounded-circle">+</div>
+      <% end %>
+    </div>
+  </div>
 
-  <h2>商品一覧</h2>
+  
+  <div class="row">
+    <table class="table">
 
-  <table class="table">
-
-    <tbody>
-
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-        <th></th>
-      </tr>
-
-      <% @items.each do |item| %>
+      <tbody>
 
         <tr>
-          <td>
-            <%= item.id %>
-          </td>
-
-          <td>
-            <%= link_to admin_item_path(item.id) do %>
-              <%= item.name %>
-            <% end %>
-          </td>
-
-          <td>
-            <%= item.price %>
-          </td>
-
-          <td>
-            <%= Genre.find(item.genre_id).name %>
-          </td>
-
-          <td>
-            <%= item.is_active %>
-          </td>
-          <td></td>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+          <th></th>
         </tr>
+  
+        <% @items.each do |item| %>
+  
+          <tr>
+            <td>
+              <%= item.id %>
+            </td>
+  
+            <td>
+              <%= link_to admin_item_path(item.id) do %>
+                <%= item.name %>
+              <% end %>
+            </td>
+  
+            <td>
+              <%= p item.price.to_s(:delimited) %>
+            </td>
+  
+            <td>
+              <%= Genre.find(item.genre_id).name %>
+            </td>
 
-      <% end %>
+            <td>
+              <% if item.is_active == true %>
+                <p class="text-success"><strong>販売中</strong></p>
+              <% else %>
+                <p class="text-secondary"><strong>販売停止中</strong></p>
+              <% end%>
+            </td>
+            <td></td>
+          </tr>
 
-    </tbody>
+        <% end %>
 
-  </table>
+      </tbody>
 
+    </table>
+  </div>
 </div>

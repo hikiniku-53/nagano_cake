@@ -1,1 +1,61 @@
-<h1>admin/items/edit</h1>
+<div class="container">
+
+  <h2>商品編集</h2>
+
+  <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>商品画像</th>
+        <td>
+          <%= f.file_field :image, accept: "image/*", class: 'form-control-file' %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>商品名</th>
+        <td><%= f.text_field :name, class: 'form-control' %></td>
+      </tr>
+
+      <tr>
+        <th>商品説明</th>
+        <td><%= f.text_area :introduction, class: 'form-control' %></td>
+      </tr>
+
+      <tr>
+        <th>ジャンル</th>
+        <td>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>税抜価格</th>
+        <td><%= f.number_field :price, class: 'form-control' %></td>
+      </tr>
+
+      <tr>
+        <th>販売ステータス</th>
+
+        <td>
+          <div>
+            <%= f.radio_button :is_active, true %>
+            <%= f.label :is_active, '販売中', value: true %>
+          </div>
+
+          <div>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :is_active, '販売停止中', value: false %>
+          </div>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= f.submit '変更を保存', class: 'btn  btn-success' %>
+
+  <% end %>
+</div>

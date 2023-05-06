@@ -3,7 +3,7 @@
     <h4>新規会員登録</h4>
   </div>
 
-  <%= form_with model: @customer, url: registration_path do |f| %>
+  <%= form_with model: @customer, url: customer_registration_path do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
 
    <table class="table">

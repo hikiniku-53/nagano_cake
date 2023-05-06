@@ -1,1 +1,66 @@
-<h1>customers/show</h1>
+<div class="container">
+
+  <h2>マイページ</h2>
+
+
+
+    <div>
+      <span>登録情報</span>
+      <%= link_to customers_edit_path do %>
+        <div class="btn btn-success">編集する</div>
+      <% end %>
+    </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>氏名</th>
+          <td>
+            <%= @customer.last_name %>&nbsp&nbsp<%= @customer.first_name %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>カナ</th>
+          <td>
+            <%= @customer.last_name_kana %>&nbsp&nbsp<%= @customer.first_name_kana %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+
+        <tr>
+          <th>住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %>
+          <%= @customer.is_deleted %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <span>配送先</span>
+      <%= link_to addresses_path do %>
+        <div class="btn btn-primary">一覧を見る</div>
+      <% end %>
+    </div>
+
+    <div>
+      <span>注文履歴</span>
+      <%= link_to orders_path do %>
+        <div class="btn btn-primary">一覧を見る</div>
+      <% end %>
+    </div>
+</div>

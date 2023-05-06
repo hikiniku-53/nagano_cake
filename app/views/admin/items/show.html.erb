@@ -1,1 +1,60 @@
-<h1>admin/items/show</h1>
+<div class="container">
+
+  <h2>商品詳細</h2>
+
+    <div>
+      <%= image_tag @item.get_image(360,270) %>
+    </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>商品名</th>
+          <td><%= @item.name %></td>
+        </tr>
+
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.introduction %></td>
+        </tr>
+
+        <tr>
+          <th>ジャンル</th>
+          <td><%= Genre.find(@item.genre_id).name %></td>
+        </tr>
+
+        <tr>
+          <th>
+            税込み価格<br>
+            (税抜価格)
+          </th>
+          <td>
+            <%= p @item.add_tax_price.to_s(:delimited) %>
+            (<%= p @item.price.to_s(:delimited) %>)
+            円
+          </td>
+        </tr>
+
+        <tr>
+          <th>販売ステータス</th>
+          <td>
+            <% if @item.is_active == true %>
+                <p class="text-success"><strong>販売中</strong></p>
+            <% else %>
+              <p class="text-secondary"><strong>販売停止中</strong></p>
+            <% end%>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <%= link_to edit_admin_item_path(params[:id]) do %>
+        <div class="btn btn-success">編集する</div>
+      <% end %>
+    </div>
+
+
+
+
+</div>
