@@ -1,1 +1,57 @@
-<h1>items/show</h1>
+<div class="container d-flex">
+
+  <div class="col-3">
+    <table>
+      <tbody>
+        <tr>
+          <th>ジャンル検索</th>
+        </tr>
+
+        <tr>
+          <td>
+            <% Genre.all.each do |genre| %>
+              <div class="m-3">
+                <%= link_to genre_search_path(genre.id) do %>
+                  <%= genre.name %>
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-9 d-flex">
+    <div>
+      <%= image_tag @item.get_image(360,270) %>
+    </div>
+
+    <div>
+      <h3><%= @item.name %></h3>
+      <div><%= @item.introduction %></div>
+      <div><%= p @item.add_tax_price.to_s(:delimited) %></div>
+
+
+      <div class="form">
+      <%= form_with model: @cart_item ,url: cart_items_path do |f| %>
+
+        <%= f.hidden_field :item_id, :value => @item.id %>
+
+        <%= f.select :amount, *[1..10] %>
+
+        <%= f.submit 'カートに入れる', class: 'btn  btn-success' %>
+
+      <% end %>
+
+    </div>
+
+
+    </div>
+
+
+
+
+  </div>
+
+</div>

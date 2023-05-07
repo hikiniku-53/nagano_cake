@@ -1,5 +1,28 @@
 <div class="container">
   
+  <div class="col-3">
+    <table>
+      <tbody>
+        <tr>
+          <th>ジャンル検索</th>
+        </tr>
+
+        <tr>
+          <td>
+            <% Genre.all.each do |genre| %>
+              <div class="m-3">
+                <%= link_to genre_search_path(genre.id) do %>
+                  <%= genre.name %>
+                <% end %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  
   <div class="row justify-content-between">
     <div class="d-flex">
       <h2>商品一覧</h2>

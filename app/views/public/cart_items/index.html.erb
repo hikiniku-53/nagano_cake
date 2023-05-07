@@ -1,1 +1,57 @@
-<h1>cart_items/index</h1>
+<div class="container">
+
+  <div class="row justify-content-between">
+    <h2>ショッピングカート</h2>
+
+    <div>
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, class: 'btn btn-danger' %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <table class="table">
+
+      <tbody>
+
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+
+        <% @cart_items.each do |cart_item| %>
+
+          <tr>
+            <td>
+              <%= image_tag Item.find(cart_item.item_id).get_image(100,100) %>
+              <%= Item.find(cart_item.item_id).name %>
+            </td>
+
+            <td>
+              <%= p Item.find(cart_item.item_id).add_tax_price.to_s(:delimited) %>
+            </td>
+
+            <td>
+              <%= p Item.find(cart_item.item_id).price.to_s(:delimited) %>
+            </td>
+
+            <td>
+
+            </td>
+
+            <td>
+             <%= link_to "削除する", cart_item_path, method: :delete, class: 'btn btn-danger' %>
+            </td>
+            <td></td>
+          </tr>
+
+        <% end %>
+
+      </tbody>
+
+    </table>
+  </div>
+</div>
