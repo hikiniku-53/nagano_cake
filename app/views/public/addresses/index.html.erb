@@ -1,1 +1,84 @@
-<h1>addresses/index</h1>
+<div class="container">
+
+  <h2>配送先登録・一覧</h2>
+
+  <%= form_with model: @address, url: addresses_path do |f| %>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>郵便番号(ハイフンなし)</th>
+          <td>
+            <%= f.text_field :postal_code %>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>
+            <%= f.text_field :address %>
+            </td>
+        </tr>
+        
+        <tr>
+          <th>宛名</th>
+          
+          <td>
+            <%= f.text_field :name %>
+          </td>
+          
+          <td></td>
+          
+          <td>
+            <%= f.submit '新規登録', class: 'btn btn-success' %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+
+  <table>
+
+    <tbody>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+
+      <% @addresses.each do |address| %>
+
+        <tr>
+          <td>
+            <%= address.postal_code %>
+          </td>
+
+          <td>
+            <%= address.address %>
+          </td>
+
+          <td>
+            <%= address.name %>
+          </td>
+
+          <td>
+            <%= link_to edit_address_path(address.id) do %>
+              <div class="btn btn-success">編集する</div>
+            <% end %>
+
+            <%= link_to address_path(address.id), method: :delete do %>
+              <div class="btn btn-danger">削除する</div>
+            <% end %>
+          </td>
+
+        </tr>
+
+      <% end %>
+
+    </tbody>
+
+  </table>
+
+</div>

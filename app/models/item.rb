@@ -5,6 +5,8 @@ class Item < ApplicationRecord
     tax_rate = 1.10
     (self.price * tax_rate).round
   end
+  
+  
 
   def get_image(width, height)
     unless image.attached?

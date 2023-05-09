@@ -1,1 +1,37 @@
-<h1>addresses/edit</h1>
+<div class="container">
+
+  <h2>配送先編集</h2>
+
+  <%= form_with model: @address, url: address_path(params[:id]), method: :patch do |f| %>
+
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>郵便番号(ハイフンなし)</th>
+        <td>
+          <%= f.text_field :postal_code %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>住所</th>
+        <td>
+          <%= f.text_field :address %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>宛名</th>
+        <td>
+          <%= f.text_field :name %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= f.submit '変更を保存', class: 'btn  btn-success' %>
+
+  <% end %>
+
+</div>
