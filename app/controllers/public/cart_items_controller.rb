@@ -11,6 +11,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
