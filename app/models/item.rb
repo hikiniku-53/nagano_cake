@@ -1,12 +1,15 @@
 class Item < ApplicationRecord
   has_one_attached :image
 
+  has_many :order_details, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  belongs_to :genre
+
   def add_tax_price
-    tax_rate = 1.10
-    (self.price * tax_rate).round
+    (self.price * Constants::Tax_rate).floor
   end
-  
-  
+
+
 
   def get_image(width, height)
     unless image.attached?

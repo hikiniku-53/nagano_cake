@@ -1,12 +1,20 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
+    @total_price = 0
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-    @cart_item.save
+    if CartItem.find_by(item_id: cart_item_params[:item_id])
+      @cart_item = CartItem.find_by(item_id: cart_item_params[:item_id])
+      amount = cart_item_params[:amount].to_i
+      @cart_item.amount = amount += @cart_item.amount
+      @cart_item.update(amount: @cart_item.amount)
+    else
+      @cart_item = CartItem.new(cart_item_params)
+      @cart_item.customer_id = current_customer.id
+      @cart_item.save
+    end
     redirect_to cart_items_path
   end
 
@@ -27,7 +35,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    CartItem.destroy_all
+    current_customer.cart_items.destroy_all
     redirect_to cart_items_path
   end
 
