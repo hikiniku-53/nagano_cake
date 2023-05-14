@@ -1,6 +1,6 @@
 <div class="container">
 <h2>会員情報編集</h2>
-  <%= form_with model: @customer, url: admin_order_path(@customer.id), method: :patch do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
 
     <table class="table">
       <tbody>
