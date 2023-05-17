@@ -1,1 +1,88 @@
-<h1>orders/confirmation</h1>
+<div class="container">
+
+  <h2>注文情報確認</h2>
+
+  <div class="row d-flex">
+    <div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+
+          <% @cart_items.each do |cart_item| %>
+
+          <tr>
+            <td>
+              <%= image_tag cart_item.item.get_image(100,100) %>
+              <%= cart_item.item.name %>
+            </td>
+
+            <td>
+              <%= p cart_item.item.add_tax_price.to_s(:delimited) %>
+            </td>
+
+            <td>
+              <%= cart_item.amount %>
+            </td>
+
+            <td>
+             <%= p cart_item.subtotal.to_s(:delimited) %>
+            </td>
+          <% @total_price += cart_item.subtotal %>
+
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>送料</th>
+            <td>
+              <%= p Constants::Shipping_cost %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>商品合計</th>
+            <td>
+              <%= p @total_price.to_s(:delimited) %>
+            </td>
+          </tr>
+
+          <tr>
+            <th>請求金額</th>
+            <td>
+              <%= p (@total_price + Constants::Shipping_cost).to_s(:delimited) %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h4>支払方法</h4>
+    <div>
+      <%= @order.payment_method_i18n %>
+    </div>
+  </div>
+
+  <div>
+    <h4>お届け先</h4>
+    <div>
+      <%= @order.address_display %>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <%= link_to "情報入力に進む", new_order_path, class: 'btn  btn-success' %>
+  </div>
+
+</div>

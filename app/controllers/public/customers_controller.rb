@@ -18,6 +18,8 @@ class Public::CustomersController < ApplicationController
     flash[:notice]
     redirect_to customers_edit_path
   end
+  
+  
 
   private
 

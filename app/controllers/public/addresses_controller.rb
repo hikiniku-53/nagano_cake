@@ -26,6 +26,8 @@ class Public::AddressesController < ApplicationController
     address.destroy
     redirect_to addresses_path
   end
+  
+  
 
 
 
