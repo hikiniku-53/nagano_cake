@@ -74,8 +74,8 @@
     <%= link_to edit_admin_customer_path(@customer.id) do %>
       <div class="btn btn-success">編集する</div>
     <% end %>
-    
-    <%= link_to admin_order_path(@customer.id) do %>
+
+    <%= link_to admin_customer_search_path(@customer.id) do %>
       <div class="btn btn-primary">注文履歴一覧を見る</div>
     <% end %>
   </div>

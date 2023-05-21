@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
     #admin/orders
     resources :orders, only: [:show, :update]
+    get '/orders/customer/:id' => 'orders#customer_search', as: 'customer_search'
 
     #admin/order_details
     resources :order_details, only: [:update]

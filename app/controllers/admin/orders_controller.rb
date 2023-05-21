@@ -3,6 +3,11 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
   end
+  
+  def customer_search
+    @customer = Customer.find(params[:id])
+    @total_amount = 0
+  end
 
   def update
     @order = Order.find(params[:id])
