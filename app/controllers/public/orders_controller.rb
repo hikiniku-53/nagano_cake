@@ -32,26 +32,32 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.save
 
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
+    current_customer.cart_items.each do |cart_item|
       @order_detail = OrderDetail.new
       @order_detail.order_id = @order.id
+
       @order_detail.item_id = cart_item.item_id
       @order_detail.amount = cart_item.amount
       @order_detail.price = cart_item.item.add_tax_price
-      @order_detail.save
+
+      @order_detail.save!
+
     end
 
 
     current_customer.cart_items.destroy_all
 
-    redirect_to orders_completion_path
+    redirect_to order_completion_path
   end
 
   def index
+    @orders = current_customer.orders
+
   end
 
   def show
+    @order = Order.find(params[:id])
+    
   end
 
   private

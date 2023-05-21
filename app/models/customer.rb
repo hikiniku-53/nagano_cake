@@ -29,4 +29,12 @@ class Customer < ApplicationRecord
     '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
   end
 
+  def full_name
+    last_name + first_name
+  end
+
+  def full_name_space
+    last_name + ' ' + first_name
+  end
+
 end

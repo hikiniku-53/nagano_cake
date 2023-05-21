@@ -62,8 +62,8 @@ Rails.application.routes.draw do
 
     #public/orders
     resources :orders, only: [:new, :index, :show, :create]
-    post '/orders/confirmation' => 'orders#confirmation'
-    get '/orders/completion' => 'orders#completion'
+    post '/order/confirmation' => 'orders#confirmation'
+    get '/order/completion' => 'orders#completion'
 
   end
 end

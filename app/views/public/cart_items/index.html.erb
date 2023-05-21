@@ -37,7 +37,7 @@
 
           <td>
             <div class="form">
-              <%= form_with model: cart_item ,url: cart_item_path(cart_item.id), method: :patch do |f| %>
+              <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
 
                 <%= f.select :amount, *[1..10] %>
 

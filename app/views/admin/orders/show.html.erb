@@ -1,1 +1,128 @@
-<h1>admin/orders/show</h1>
+<div class="container">
+  <h1>注文履歴一覧</h1>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <tr>
+          <th>購入者</th>
+
+          <td>
+            <%= @order.customer.full_name_space %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>注文日</th>
+
+          <td>
+            <%= @order.created_at.strftime("%Y/%m/%d") %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>配送先</th>
+
+          <td>
+            <%= @order.address_display %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>支払方法</th>
+
+          <td>
+            <%= @order.payment_method_i18n %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>注文ステータス</th>
+
+          <td>
+            <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+              <%= f.select :status, { '入金待ち': 'unpaid', '入金確認': 'deposit_confirmation', '製作中': 'production', '発送準備中': 'preparation', '発送済み': 'shipped'} %>
+              <%= f.submit %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <table class="table col-9">
+      <tbody>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+          <th></th>
+        </tr>
+
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <td>
+              <%= order_detail.item.name %>
+            </td>
+
+            <td>
+              <%= p order_detail.price.to_s(:delimited) %>
+            </td>
+
+            <td>
+              <%= order_detail.amount %>
+            </td>
+
+            <td>
+              <%= p order_detail.subtotal.to_s(:delimited) %>
+            </td>
+
+            <td>
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+                <%= f.select :making_status, { '着手不可': 'unpaid', '製作待ち': 'awaiting_manufacture', '製作中': 'under_manufacture', '製作完了': 'manufacturing_completed'} %>
+                <%= f.submit %>
+              <% end %>
+            </td>
+
+            <td>
+
+            </td>
+          </tr>
+        <% end %>
+
+
+      </tbody>
+    </table>
+
+    <table class="table col-3">
+      <tbody>
+        <tr>
+          <th>商品合計</th>
+
+          <td>
+            <%= p (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>送料</th>
+
+          <td>
+            <%= p @order.shipping_cost.to_s(:delimited) %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>請求金額合計</th>
+
+          <td>
+            <%= p @order.total_payment.to_s(:delimited) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
