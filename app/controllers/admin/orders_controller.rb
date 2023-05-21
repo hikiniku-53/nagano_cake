@@ -3,7 +3,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
   end
-  
+
   def customer_search
     @customer = Customer.find(params[:id])
     @total_amount = 0
@@ -12,6 +12,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+    flash[:notice] = "注文ステータスが更新されました"
     redirect_to admin_order_path
   end
 
