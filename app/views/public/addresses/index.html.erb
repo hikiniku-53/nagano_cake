@@ -19,16 +19,16 @@
             <%= f.text_field :address %>
             </td>
         </tr>
-        
+
         <tr>
           <th>宛名</th>
-          
+
           <td>
             <%= f.text_field :name %>
           </td>
-          
+
           <td></td>
-          
+
           <td>
             <%= f.submit '新規登録', class: 'btn btn-success' %>
           </td>
@@ -48,7 +48,7 @@
         <th></th>
       </tr>
 
-      <% @addresses.each do |address| %>
+      <% current_customer.addresses.each do |address| %>
 
         <tr>
           <td>
