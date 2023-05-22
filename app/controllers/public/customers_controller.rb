@@ -15,11 +15,11 @@ class Public::CustomersController < ApplicationController
     @customer.is_deleted = true
     @customer.save
     reset_session
-    flash[:notice]
-    redirect_to customers_edit_path
+    flash[:notice] = "退会が完了しました。"
+    redirect_to root_path
   end
-  
-  
+
+
 
   private
 
