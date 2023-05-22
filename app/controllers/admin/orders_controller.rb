@@ -6,6 +6,7 @@ class Admin::OrdersController < ApplicationController
 
   def customer_search
     @customer = Customer.find(params[:id])
+    @orders = @customer.orders.page(params[:page])
     @total_amount = 0
   end
 

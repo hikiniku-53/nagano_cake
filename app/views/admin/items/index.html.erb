@@ -1,34 +1,11 @@
 <div class="container">
-  
-  <div class="col-3">
-    <table>
-      <tbody>
-        <tr>
-          <th>ジャンル検索</th>
-        </tr>
 
-        <tr>
-          <td>
-            <% Genre.all.each do |genre| %>
-              <div class="m-3">
-                <%= link_to genre_search_path(genre.id) do %>
-                  <%= genre.name %>
-                <% end %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-  
   <div class="row justify-content-between">
     <div class="d-flex">
       <h2>商品一覧</h2>
       <p>(全 <%= Item.count %> 件)</p>
     </div>
-    
+
     <div>
       <%= link_to new_admin_item_path do %>
         <div class="btn btn-lg bg-white shadow-sm rounded-circle">+</div>
@@ -36,7 +13,7 @@
     </div>
   </div>
 
-  
+
   <div class="row">
     <table class="table">
 
@@ -50,24 +27,24 @@
           <th>ステータス</th>
           <th></th>
         </tr>
-  
+
         <% @items.each do |item| %>
-  
+
           <tr>
             <td>
               <%= item.id %>
             </td>
-  
+
             <td>
               <%= link_to admin_item_path(item.id) do %>
                 <%= item.name %>
               <% end %>
             </td>
-  
+
             <td>
               <%= p item.price.to_s(:delimited) %>
             </td>
-  
+
             <td>
               <%= Genre.find(item.genre_id).name %>
             </td>
@@ -85,7 +62,7 @@
         <% end %>
 
       </tbody>
-
     </table>
+    <div><%= paginate @items %></div>
   </div>
 </div>
