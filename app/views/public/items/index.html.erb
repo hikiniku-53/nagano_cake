@@ -1,62 +1,16 @@
 <div class="container d-flex">
 
-  <div class="col-3">
-    <table>
-      <tbody>
-        <tr>
-          <th>ジャンル検索</th>
-        </tr>
-
-        <tr>
-          <td>
-            <% Genre.all.each do |genre| %>
-              <div class="m-3">
-                <%= link_to genre_search_path(genre.id) do %>
-                  <%= genre.name %>
-                <% end %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
+  <%= render 'genre_search' %>
 
   <div class="col-9">
 
     <div class="d-flex">
       <h2>商品一覧</h2>
-      <h5>(全 <%= Item.count %> 件)</h5>
+      <h5>(全 <%= Item.all.count %> 件)</h5>
     </div>
-
-    <div class="row d-flex">
-      <% @items.each do |item| %>
-
-      <div class="item col-3">
-
-        <%= link_to item_path(item.id) do %>
-
-        <div class="item-image">
-          <%= image_tag item.get_image(100,100) %>
-        </div>
-
-        <div class="item-name">
-          <%= item.name %>
-        </div>
-
-        <div class="item-price">
-          <%= p item.price.to_s(:delimited) %>
-        </div>
-
-        <% end %>
-
-      </div>
-
-      <% end %>
-    </div>
-    <div><%= paginate @items %></div>
-
+    
+    <%= render 'items', items: @items %>
+    
   </div>
 
 </div>

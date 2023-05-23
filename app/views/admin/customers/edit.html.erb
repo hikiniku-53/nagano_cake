@@ -1,5 +1,5 @@
 <div class="container">
-<h2>会員情報編集</h2>
+<h2><%= @customer.full_name %>さんの情報編集</h2>
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
 
     <table class="table">
@@ -40,7 +40,7 @@
         </tr>
 
         <tr>
-            <th>郵便番号(ハイフンなし)</th>
+            <th>郵便番号</th>
           <td>
              <div class="field">
               <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>

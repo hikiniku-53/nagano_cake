@@ -1,1 +1,16 @@
-<h1>items/genre_search</h1>
+<div class="container d-flex">
+
+  <%= render 'genre_search' %>
+
+  <div class="col-9">
+
+    <div class="d-flex">
+      <h2><%= @genre.name %>一覧</h2>
+      <h5>(全 <%= @items.count %> 件)</h5>
+    </div>
+
+    <%= render 'items', items: @items %>
+
+  </div>
+
+</div>

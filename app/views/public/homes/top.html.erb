@@ -1,27 +1,6 @@
 <div class="container d-flex">
 
-  <div class="col-3">
-    <table>
-      <tbody>
-        <tr>
-          <th>ジャンル検索</th>
-        </tr>
-
-        <tr>
-          <td>
-            <% Genre.all.each do |genre| %>
-              <div class="m-3">
-                <%= link_to genre_search_path(genre.id) do %>
-                  <%= genre.name %>
-                <% end %>
-              </div>
-            <% end %>
-          </td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
+  <%= render 'public/items/genre_search' %>
 
     <div class="col-lg-9">
 
@@ -42,8 +21,7 @@
          <div>
 
     <div class="d-flex">
-      <h2>商品一覧</h2>
-      <h5>(全 <%= Item.count %> 件)</h5>
+      <h2>新着商品</h2>
     </div>
 
     <div class="row d-flex">

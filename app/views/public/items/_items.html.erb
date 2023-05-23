@@ -1,0 +1,26 @@
+<div class="row d-flex">
+      <% items.each do |item| %>
+
+      <div class="item col-3">
+
+        <%= link_to item_path(item.id) do %>
+
+        <div class="item-image">
+          <%= image_tag item.get_image(100,100) %>
+        </div>
+
+        <div class="item-name">
+          <%= item.name %>
+        </div>
+
+        <div class="item-price">
+          <%= p item.price.to_s(:delimited) %>
+        </div>
+
+        <% end %>
+
+      </div>
+
+      <% end %>
+    </div>
+    <div><%= paginate items %></div>
