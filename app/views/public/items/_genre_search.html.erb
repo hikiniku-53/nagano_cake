@@ -1,15 +1,15 @@
 <div class="col-3">
-    <table>
+    <table class="table table-sm table-bordered border-dark  ">
       <tbody>
-        <tr>
+        <tr class="text-center">
           <th>ジャンル検索</th>
         </tr>
 
         <tr>
-          <td>
+          <td class="p-0">
             <% Genre.all.each do |genre| %>
-              <div class="m-3">
-                <%= link_to genre_search_path(genre.id) do %>
+              <div class="m-3 text-dark">
+                <%= link_to genre_search_path(genre.id), class: 'text-dark' do %>
                   <%= genre.name %>
                 <% end %>
               </div>

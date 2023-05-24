@@ -11,123 +11,128 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-lg bg-light navbar-light w-100 mb-5 border-bottom border-dark">
+    <header class="mb-5">
+      <nav class="navbar navbar-expand-lg navbar-light w-100 border-bottom border-dark">
         <div class="container ">
 
           <!--logo-->
-          <a class="navbar-brand btn btn-outline-dark" href="/">Nagano Cake</a>
+          <a class="navbar-brand btn btn-outline-dark " href="/">Nagano Cake</a>
+
+          <% if customer_signed_in? %>
+            <div class="mr-5 ml-auto">ようこそ、<%= Customer.find(current_customer.id).last_name %>さん！</div>
+          <% end %>
+
           <row>
           <!--humburger_menu-->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <!--links-->
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
+            <!--links-->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class=" row navbar-nav ml-auto">
 
-              <% if admin_signed_in? %>
-
-                <li class="nav-item m-3">
-                  <%= link_to admin_items_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                    商品一覧
-                  <% end %>
-                </li>
-
-                <li class="nav-item m-3">
-                  <%= link_to admin_customers_path, class: 'nav-link px-3 btn btn btn-outline-secondary' do %>
-                    会員一覧
-                  <% end %>
-                </li>
-
-                <li class="nav-item m-3">
-                  <%= link_to admin_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                    注文履歴一覧
-                  <% end %>
-                </li>
-
-                <li class="nav-item m-3">
-                  <%= link_to admin_genres_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                    ジャンル一覧
-                  <% end %>
-                </li>
-
-                <li class="nav-item my-3 ml-3">
-                  <%= link_to  destroy_admin_session_path, method: :delete, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                    ログアウト
-                  <% end %>
-                </li>
-
-              <% else %>
-
-                <% if customer_signed_in? %>
-
-                  <div>
-                    ようこそ、<%= Customer.find(current_customer.id).last_name %>さん！
-                  </div>
+                <% if admin_signed_in? %>
 
                   <li class="nav-item m-3">
-                    <%= link_to customers_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      マイページ
-                    <% end %>
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 6.25rem;">
+                      <%= link_to "商品一覧", admin_items_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
 
                   <li class="nav-item m-3">
-                    <%= link_to items_path, class: 'nav-link px-3 btn btn btn-outline-secondary' do %>
-                      商品一覧
-                    <% end %>
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 6.25rem;">
+                      <%= link_to "会員一覧", admin_customers_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
 
                   <li class="nav-item m-3">
-                    <%= link_to cart_items_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      カート
-                    <% end %>
+                    <div class="nav-link text-nowrap btn btn btn-outline-secondary px-0" style="width: 6.25rem;">
+                      <%= link_to "注文履歴一覧", admin_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
 
-                  <li class="nav-item my-3 ml-3">
-                    <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      ログアウト
-                    <% end %>
+                  <li class="nav-item m-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 6.25rem;">
+                      <%= link_to "ジャンル一覧", admin_genres_path, class: "text-decoration-none text-dark" %>
+                    </div>
+                  </li>
+
+                  <li class="nav-item ml-3 my-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 6.25rem;">
+                      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none text-dark" %>
+                    </div>
+                  </li>
+
+                <% elsif customer_signed_in? %>
+
+                  <li class="nav-item m-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "マイページ", customers_path, class: "text-decoration-none text-dark" %>
+                    </div>
+                  </li>
+
+                  <li class="nav-item m-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "商品一覧", items_path, class: "text-decoration-none text-dark" %>
+                    </div>
+
+                  </li>
+
+                  <li class="nav-item m-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "カート", cart_items_path, class: "text-decoration-none text-dark" %>
+                    </div>
+                  </li>
+
+                  <li class="nav-item ml-3 my-3 ">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
 
                 <% else %>
+
                   <li class="nav-item m-3">
-                    <%= link_to about_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      About
-                    <% end %>
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "About", about_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
+
                   <li class="nav-item m-3">
-                    <%= link_to items_path, class: 'nav-link px-3 btn btn btn-outline-secondary' do %>
-                      商品一覧
-                    <% end %>
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "商品一覧", items_path, class: "text-decoration-none text-dark" %>
+                    </div>
+
                   </li>
+
                   <li class="nav-item m-3">
-                    <%= link_to new_customer_registration_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      新規登録
-                    <% end %>
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "新規登録", new_customer_registration_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
-                  <li class="nav-item my-3 ml-3">
-                    <%= link_to new_customer_session_path, class: 'nav-link px-3 btn btn-outline-secondary' do %>
-                      ログイン
-                    <% end %>
+
+                  <li class="nav-item ml-3 my-3">
+                    <div class="nav-link text-nowrap px-0 btn btn btn-outline-secondary" style="width: 5.5rem;">
+                      <%= link_to "ログイン", new_customer_session_path, class: "text-decoration-none text-dark" %>
+                    </div>
                   </li>
 
                 <% end %>
-              <% end %>
-                </ul>
+
+              </ul>
             </div>
 
             <!--search_form-->
             <div class="input-wrapper mb-2">
-                <input class="d-flex ml-auto w-50"></input>
+              <input class="d-flex ml-auto"></input>
             </div>
           </row>
         </div>
       </nav>
     </header>
 
-    <div class="h-auto">
+    <div class="">
       <%= yield %>
     </div>
 
