@@ -5,3 +5,15 @@
   background-image: assets/images("patissier.jpg");
   background-size: cover;
 }
+
+.pagination {
+  justify-content: center;
+}
+
+.body > .container {
+  min-height: 450px;
+}
+
+footer .container {
+  height: 10vh;
+}

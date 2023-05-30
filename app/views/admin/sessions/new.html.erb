@@ -1,41 +1,42 @@
-<div class="container">
-<h2>管理者ログイン</h2>
+<div class="container px-5">
+  <div class="mx-5 my-5">
+    <h4 class="bg-light d-inline px-4">
+      管理者ログイン
+    </h4>
+  </div>
 
-<%= form_with model: @admin, url: admin_session_path do |f| %>
-  <table class="table">
-    <!--email_form-->
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <div class="field">
-          <%= f.email_field :email, autofocus: true %>
-        </div>
-      </td>
-    </tr>
+  <row>
+    <%= form_with model: @admin, url: admin_session_path do |f| %>
+      <table class="table table-borderless col-8 mx-auto">
+        <tr>
+          <td class="col-3">メールアドレス</td>
+          <td class="col-9">
+            <div class="field">
+              <%= f.email_field :email, autofocus: true, class: 'w-100 form-control border-dark', placeholder: 'sample@example.com' %>
+            </div>
+          </td>
+        </tr>
 
-    <!--password_form-->
-    <tr>
-      <th>パスワード</th>
-      <td>
-        <div class="field">
-          <%= f.password_field :password %>
-        </div>
-      </td>
-    </tr>
+        <tr>
+          <td>パスワード</td>
+          <td>
+            <div class="field">
+              <%= f.password_field :password, class: 'w-100 form-control border-dark' %>
+            </div>
+          </td>
+        </tr>
 
-    <tr>
-      <th></th>
-      <td>
-        <div class="actions">
-          <%= f.submit "ログイン", class: 'btn btn-primary' %>
-        </div>
-      </td>
-    </tr>
-  </table>
+        <tr>
+          <td></td>
+          <td>
+            <div class="actions">
+              <%= f.submit "ログイン", class: 'btn btn-primary' %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <row>
 
-
-
-<% end %>
-
-<%= render "admin/shared/links" %>
+  <%= render "admin/shared/links" %>
 </div>

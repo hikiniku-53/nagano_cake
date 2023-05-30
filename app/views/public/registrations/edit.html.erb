@@ -1,82 +1,95 @@
 <div class="container">
-<h2>会員情報編集</h2>
+  <div class="mx-5 my-4">
+    <h4 class="bg-light d-inline px-4">
+      会員情報編集
+    </h4>
+  </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "public/shared/error_messages", resource: resource %>
 
-    <table class="table">
-      <tbody>
-
-        <tr>
-          <th>氏名</th>
-          <td>
-            <div class="field">
-              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-            </div>
-          </td>
-          <td>
-            <div class="field">
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-          <th>フリガナ</th>
-          <td>
-            <div class="field">
-              <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-            </div>
-          </td>
-
-          <td>
-            <div class="field">
-              <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-            <th>郵便番号</th>
-          <td>
-             <div class="field">
-              <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
+    <row>
+      <table class="table table-sm table-borderless col-10">
+        <tbody>
+          <tr>
+            <td class="col-3">氏名</td>
+            <td class="col-3">
+              <div class="field">
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: 'w-75 form-control border-dark' %>
               </div>
-          </td>
-        </tr>
+            </td>
+
+            <td class="col-3">
+              <div class="field">
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
+            <td class="col-3"></td>
+          </tr>
 
           <tr>
-          <th>住所</th>
-          <td>
+            <td>フリガナ</td>
+            <td>
               <div class="field">
-              <%= f.text_field :address, autofocus: true%>
-            </div>
-          </td>
-        </tr>
+                <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
 
-        <tr>
-          <th>電話番号</th>
-          <td>
-            <div class="field">
-              <%= f.text_field :telephone_number, autofocus: true%>
-            </div>
-          </td>
-        </tr>
+            <td>
+              <div class="field">
+                <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <th>メールアドレス</th>
-          <td>
-            <div class="field">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </div>
-          </td>
-        </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td>
+              <div class="field">
+                <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
 
-      </tbody>
-    </table>
+          <tr>
+            <td>住所</td>
+            <td colspan="3">
+              <div class="field">
+                <%= f.text_field :address, autofocus: true, class: 'w-100 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
 
-    <div class="actions">
-      <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
-      <%= link_to "退会する", customers_unsubscribe_path, class: 'btn btn-danger' %>
-    </div>
+          <tr>
+            <td>電話番号</td>
+            <td>
+              <div class="field">
+                <%= f.text_field :telephone_number, autofocus: true, class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>メールアドレス</td>
+            <td>
+              <div class="field">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-75 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </row>
+
+    <row>
+      <div class="d-flex justify-content-center">
+        <div class="col-4">
+          <%= f.submit "編集内容を保存", class: 'btn btn-success px-3 w-75 border-dark' %>
+        </div>
+
+        <div class="col-3">
+          <%= link_to "退会する", customers_unsubscribe_path, class: 'btn btn-danger px-3 w-50' %>
+        </div>
+      </div>
+    </row>
   <% end %>
 </div>

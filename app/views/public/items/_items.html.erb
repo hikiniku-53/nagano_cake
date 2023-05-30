@@ -1,26 +1,17 @@
 <div class="row d-flex">
-      <% items.each do |item| %>
-
-      <div class="item col-3">
-
-        <%= link_to item_path(item.id) do %>
-
-        <div class="item-image">
-          <%= image_tag item.get_image(100,100) %>
+  <% items.each do |item| %>
+    <div class="item col-3" style="height: 200px">
+      <%= link_to item_path(item.id), class: 'text-decoration-none' do %>
+        <div class="text-center">
+          <%= image_tag item.get_image(200,100) %>
         </div>
-
-        <div class="item-name">
+        <div class="text-dark d-inline-block h-25 ">
           <%= item.name %>
         </div>
-
-        <div class="item-price">
-          <%= p item.price.to_s(:delimited) %>
+        <div class="text-dark">
+          ￥<%= p item.price.to_s(:delimited) %>
         </div>
-
-        <% end %>
-
-      </div>
-
       <% end %>
     </div>
-    <div><%= paginate items %></div>
+  <% end %>
+</div>

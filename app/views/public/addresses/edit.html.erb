@@ -1,36 +1,46 @@
 <div class="container">
-
-  <h2>配送先編集</h2>
+  <div class="mx-5 my-4">
+    <h4 class="bg-light d-inline px-4">
+      配送先編集
+    </h4>
+  </div>
 
   <%= form_with model: @address, url: address_path(params[:id]), method: :patch do |f| %>
+    <row class="m-3">
+      <table class="table table-sm table-borderless col-11">
+        <tbody>
+          <tr>
+            <td class="col-3">郵便番号(ハイフンなし)</td>
+            <td class="col-3">
+              <%= f.text_field :postal_code, class: 'w-100 form-control border-dark' %>
+            </td>
+            <td class="col-4"></td>
+            <td class="col-3"></td>
+          </tr>
 
-  <table class="table">
-    <tbody>
+          <tr>
+            <td>住所</td>
+            <td colspan="2">
+              <%= f.text_field :address, class: 'w-100 form-control border-dark' %>
+            </td>
+          </tr>
 
-      <tr>
-        <th>郵便番号(ハイフンなし)</th>
-        <td>
-          <%= f.text_field :postal_code %>
-        </td>
-      </tr>
+          <tr>
+            <td>宛名</td>
+            <td>
+              <%= f.text_field :name, class: 'w-100 form-control border-dark' %>
+            </td>
 
-      <tr>
-        <th>住所</th>
-        <td>
-          <%= f.text_field :address %>
-        </td>
-      </tr>
+            <td></td>
 
-      <tr>
-        <th>宛名</th>
-        <td>
-          <%= f.text_field :name %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            <td>
+              <%= f.submit '変更を保存', class: 'btn btn-success w-100 px-3' %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </row>
 
-  <%= f.submit '変更を保存', class: 'btn  btn-success' %>
 
   <% end %>
 

@@ -38,6 +38,10 @@ class Customer < ApplicationRecord
     '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
   end
 
+  def address_display_nameless
+    '〒' + postal_code + ' ' + address
+  end
+
   def full_name
     last_name + first_name
   end

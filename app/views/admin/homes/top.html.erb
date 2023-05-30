@@ -1,45 +1,56 @@
-<div class="container-lg">
-<div class="my-4">
-  <h4 class="bg-light d-inline px-4">注文履歴一覧</h4>
-</div>
-  <div>
-    <table class="table">
-      <tbody>
-        <tr class="table-light">
-          <th>購入日時</th>
-          <th>購入者</th>
-          <th>注文個数</th>
-          <th>注文ステータス</th>
-        </tr>
+<div class="container">
+  <row>
+    <div class="col-11 mx-auto">
+      <div class="my-4">
+        <h4 class="bg-light d-inline px-4">
+          注文履歴一覧
+        </h4>
+      </div>
 
-        <% @orders.each do |order| %>
-          <tr>
-            <td>
-              <%= link_to admin_order_path(order.id) do %>
-                <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-              <% end %>
-            </td>
+      <table class="table">
+        <thead>
+          <tr class="table-secondary">
+            <th class="col-3">購入日時</th>
 
-            <td>
-              <%= order.customer.full_name %>
-            </td>
+            <th class="col-3">購入者</th>
 
-            <td>
-              <% order.order_details.each do |order_detail| %>
-                <% @total_amount = @total_amount + order_detail.amount %>
-              <% end %>
-              <%= @total_amount %>
-            </td>
+            <th class="col-3">注文個数</th>
 
-            <td>
-              <%= order.status_i18n %>
-            </td>
+            <th class="col-3">注文ステータス</th>
           </tr>
+        </thead>
 
-        <% end %>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td>
+                <%= link_to admin_order_path(order.id), class: 'text-dark' do %>
+                  <u><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></u>
+                <% end %>
+              </td>
 
-      </tbody>
-    </table>
-    <div><%= paginate @orders %></div>
-  </div>
+              <td>
+                <%= order.customer.full_name %>
+              </td>
+
+              <td>
+                <% order.order_details.each do |order_detail| %>
+                  <% @total_amount = @total_amount + order_detail.amount %>
+                <% end %>
+
+                <%= @total_amount %>
+              </td>
+
+              <td>
+                <%= order.status_i18n %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div><%= paginate @orders %></div>
+
+    </div>
+  </row>
 </div>

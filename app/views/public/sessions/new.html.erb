@@ -1,48 +1,65 @@
-<div class="container">
-<h2>ログイン</h2>
-
-<%= form_with model: @customer, url: customer_session_path do |f| %>
-
-
-  <table class="table">
-    <!--email_form-->
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <div class="field">
-          <%= f.email_field :email, autofocus: true %>
-        </div>
-      </td>
-    </tr>
-
-    <!--password_form-->
-    <tr>
-      <th>パスワード</th>
-      <td>
-        <div class="field">
-          <%= f.password_field :password %>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <th></th>
-      <td>
-        <div class="actions">
-          <%= f.submit "ログイン", class: 'btn btn-primary' %>
-        </div>
-      </td>
-    </tr>
-  </table>
-
-<% end %>
-
-  <div>
-    <h4>
-      会員登録がお済みでない方
+<div class="container px-5">
+  <div class="mx-5 my-5">
+    <h4 class="bg-light d-inline px-4">
+      ログイン
     </h4>
-
-    <%= link_to "こちら", new_customer_registration_path, class: 'text-decoration-underline' %>
-    &nbsp;からログインしてください。
   </div>
+
+  <row>
+    <div class="mx-5 my-4">
+      <h5 class="bg-light d-inline mx-5">
+        会員の方はこちらからログイン
+      </h5>
+    </div>
+    <div class="m-3">
+      <%= form_with model: @customer, url: customer_session_path do |f| %>
+
+        <%= render "public/shared/error_messages", resource: resource %>
+
+        <table class="table table-borderless col-8 mx-auto">
+        <!--email_form-->
+          <tr>
+            <td class="col-3 align-middle">メールアドレス</td>
+
+            <td class="col-9">
+              <div class="field">
+                <%= f.email_field :email, autofocus: true, class: 'w-100 form-control border-dark', placeholder: 'sample@example.com' %>
+              </div>
+            </td>
+          </tr>
+      <!--password_form-->
+          <tr>
+            <td class="align-middle">パスワード</td>
+            <td>
+              <div class="field">
+                <%= f.password_field :password, class: 'w-100 form-control border-dark' %>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th></th>
+            <td class="col-5">
+              <div class="actions">
+                <%= f.submit "ログイン", class: 'btn btn-primary px-5' %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </row>
+
+  <row>
+    <div class="mx-5 my-4">
+      <h5 class="bg-light d-inline mx-5">
+        会員登録がお済みでない方
+      </h5>
+    </div>
+    
+    <div class="w-50 mx-auto m-3">
+      <%= link_to "こちら", new_customer_registration_path, class: 'text-decoration-underline' %>
+      &nbsp;から新規登録を行ってください。
+    </div>
+  </row>
 </div>

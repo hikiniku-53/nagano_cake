@@ -37,13 +37,16 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+  def after_update_path_for(resource)
+    customers_path
+  end
 
   protected
-  
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
-  
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   validates :name, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
+  validates :payment_method, presence: true
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
@@ -13,6 +14,10 @@ class Order < ApplicationRecord
 
   def address_display
     '〒' + postal_code + ' ' + address + ' ' + name
+  end
+
+  def address_display_nameless
+    '〒' + postal_code + ' ' + address
   end
 
 end

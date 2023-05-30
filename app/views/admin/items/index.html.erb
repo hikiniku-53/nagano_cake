@@ -1,42 +1,40 @@
 <div class="container">
+  <row>
+    <div class="d-flex justify-content-between align-items-center mx-3 my-4">
+      <div>
+        <h4 class="bg-light d-inline px-4">
+          商品一覧
+        </h4>
+      </div>
 
-  <div class="row justify-content-between">
-    <div class="d-flex">
-      <h2>商品一覧</h2>
+      <div>
+        <%= link_to new_admin_item_path do %>
+          <div class="btn btn-lg bg-white shadow-sm rounded-circle">+</div>
+        <% end %>
+      </div>
     </div>
 
-    <div>
-      <%= link_to new_admin_item_path do %>
-        <div class="btn btn-lg bg-white shadow-sm rounded-circle">+</div>
-      <% end %>
-    </div>
-  </div>
-
-
-  <div class="row">
     <table class="table">
-
-      <tbody>
-
+      <thead class="table-secondary">
         <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>税抜価格</th>
-          <th>ジャンル</th>
-          <th>ステータス</th>
-          <th></th>
+          <th class="col-1">商品ID</th>
+          <th class="col-3">商品名</th>
+          <th class="col-1">税抜価格</th>
+          <th class="col-3">ジャンル</th>
+          <th class="col-1">ステータス</th>
         </tr>
+      </thead>
 
+      <tbody class="table-borderless border-bottom">
         <% @items.each do |item| %>
-
           <tr>
-            <td>
+            <td class="align-center">
               <%= item.id %>
             </td>
 
             <td>
-              <%= link_to admin_item_path(item.id) do %>
-                <%= item.name %>
+              <%= link_to admin_item_path(item.id), class: 'text-dark' do %>
+                <u><%= item.name %></u>
               <% end %>
             </td>
 
@@ -55,13 +53,10 @@
                 <p class="text-secondary"><strong>販売停止中</strong></p>
               <% end%>
             </td>
-            <td></td>
           </tr>
-
         <% end %>
-
       </tbody>
     </table>
     <div><%= paginate @items %></div>
-  </div>
+  </row>
 </div>
