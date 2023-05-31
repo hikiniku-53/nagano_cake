@@ -2,16 +2,22 @@
 
   <%= flash[:notice] %>
 
-  <h1>注文履歴一覧</h1>
+  <div class="mx-5 my-3">
+    <h4 class="bg-light d-inline px-4">
+      注文履歴一覧
+    </h4>
+  </div>
 
-  <div class="row">
-    <table>
+
+  <row>
+    <table class="table table-sm table-borderless">
       <tbody>
         <tr>
-          <th>購入者</th>
-
-          <td>
-            <%= @order.customer.full_name_space %>
+          <th class="col-2">購入者</th>
+          <td class="col-10">
+            <%= link_to admin_customer_path(@order.customer_id), class: 'text-dark' do %>
+              <u><%= @order.customer.full_name_space %></u>
+            <% end %>
           </td>
         </tr>
 
@@ -27,7 +33,8 @@
           <th>配送先</th>
 
           <td>
-            <%= @order.address_display %>
+            <%= @order.address_display_nameless %><br>
+            <%= @order.name %>
           </td>
         </tr>
 
@@ -40,92 +47,111 @@
         </tr>
 
         <tr>
-          <th>注文ステータス</th>
+          <th class="align-middle">注文ステータス</th>
 
-          <td>
+          <td class="align-middle">
             <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-              <%= f.select :status, { '入金待ち': 'unpaid', '入金確認': 'deposit_confirmation', '製作中': 'production', '発送準備中': 'preparation', '発送済み': 'shipped'} %>
-              <%= f.submit %>
+              <div class="d-flex align-items-center">
+                <div class="mr-3">
+                  <%= f.select :status, { '入金待ち': 'unpaid', '入金確認': 'deposit_confirmation', '製作中': 'production', '発送準備中': 'preparation', '発送済み': 'shipped'} %>
+                </div>
+
+                <div class="mx-3">
+                  <%= f.submit '更新', class: 'btn btn-success' %>
+                </div>
+              </div>
             <% end %>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
+  </row>
 
-  <div class="row">
-    <table class="table col-9">
-      <tbody>
-        <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th>製作ステータス</th>
-          <th></th>
-        </tr>
+  <row>
+    <div class="d-flex">
+      <div class="col-9">
+        <table class="table border-bottom">
+          <thead>
+            <tr class="table-secondary">
+              <th class="col-5">商品名</th>
 
-        <% @order.order_details.each do |order_detail| %>
-          <tr>
-            <td>
-              <%= order_detail.item.name %>
-            </td>
+              <th class="col-2 text-center">単価(税込)</th>
 
-            <td>
-              <%= p order_detail.price.to_s(:delimited) %>
-            </td>
+              <th class="col-1 text-center">数量</th>
 
-            <td>
-              <%= order_detail.amount %>
-            </td>
+              <th class="col-1 text-center">小計</th>
 
-            <td>
-              <%= p order_detail.subtotal.to_s(:delimited) %>
-            </td>
+              <th class="col-2">製作ステータス</th>
+            </tr>
+          </thead>
 
-            <td>
-              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
-                <%= f.select :making_status, { '着手不可': 'cannot_be_started', '製作待ち': 'awaiting_manufacture', '製作中': 'under_manufacture', '製作完了': 'manufacturing_completed'} %>
-                <%= f.submit %>
-              <% end %>
-            </td>
+          <tbody class="table-sm">
+            <% @order.order_details.each do |order_detail| %>
+              <tr>
+                <td class="align-middle">
+                  <%= order_detail.item.name %>
+                </td>
 
-            <td>
+                <td class="align-middle text-center">
+                  <%= p order_detail.price.to_s(:delimited) %>
+                </td>
 
-            </td>
-          </tr>
-        <% end %>
+                <td class="align-middle text-center">
+                  <%= order_detail.amount %>
+                </td>
 
+                <td class="align-middle text-center">
+                  <%= p order_detail.subtotal.to_s(:delimited) %>
+                </td>
 
-      </tbody>
-    </table>
+                <td>
+                  <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+                    <div class="d-flex align-items-center">
+                      <div class="mx-1">
+                        <%= f.select :making_status, { '着手不可': 'cannot_be_started', '製作待ち': 'awaiting_manufacture', '製作中': 'under_manufacture', '製作完了': 'manufacturing_completed'} %>
+                      </div>
 
-    <table class="table col-3">
-      <tbody>
-        <tr>
-          <th>商品合計</th>
+                      <div class="mx-3">
+                        <%= f.submit '更新', class: 'btn btn-success' %>
+                      </div>
+                    </div>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
 
-          <td>
-            <%= p (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>
-          </td>
-        </tr>
+      <div class="col-3 align-self-end">
+        <table class="table table-sm table-borderless">
+          <tbody>
+            <tr>
+              <th class="pl-5">商品合計</th>
 
-        <tr>
-          <th>送料</th>
+              <td class="text-right">
+                <%= p (@order.total_payment - @order.shipping_cost).to_s(:delimited) %>円
+              </td>
+            </tr>
 
-          <td>
-            <%= p @order.shipping_cost.to_s(:delimited) %>
-          </td>
-        </tr>
+            <tr>
+              <th class="pl-5">送料</th>
 
-        <tr>
-          <th>請求金額合計</th>
+              <td class="text-right">
+                <%= p @order.shipping_cost.to_s(:delimited) %>円
+              </td>
+            </tr>
 
-          <td>
-            <%= p @order.total_payment.to_s(:delimited) %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <tr>
+              <th class="pl-5">請求金額合計</th>
+
+              <th class="text-right">
+                <%= p @order.total_payment.to_s(:delimited) %>円
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </row>
 </div>

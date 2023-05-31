@@ -1,28 +1,27 @@
 <div class="container">
+  <row>
+    <div class="col-11 mx-auto">
+      <div class="my-4">
+        <h4 class="bg-light d-inline px-4">
+          会員一覧
+        </h4>
+      </div>
 
-  <div class="row">
-    <div class="d-flex">
-      <h2>会員一覧</h2>
-    </div>
+      <table class="table border-bottom col-10 mx-auto">
+        <thead>
+          <tr class="table-secondary">
+            <th class="col-2">会員ID</th>
 
-  </div>
+            <th class="col-3">氏名</th>
 
+            <th class="col-4">メールアドレス</th>
 
-  <div class="row">
-    <table class="table">
+            <th class="col-3">ステータス</th>
+          </tr>
+        </thead>
 
-      <tbody>
-
-        <tr>
-          <th>会員ID</th>
-          <th>氏名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
-          <th></th>
-        </tr>
-
-        <% @customers.each do |customer| %>
-
+        <tbody>
+          <% @customers.each do |customer| %>
           <tr>
             <td>
               <%= customer.id %>
@@ -46,8 +45,6 @@
                 <p class="text-secondary"><strong>退会</strong></p>
               <% end%>
             </td>
-
-            <td></td>
           </tr>
 
         <% end %>

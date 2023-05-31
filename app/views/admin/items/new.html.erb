@@ -20,27 +20,35 @@
           <tr>
             <td>商品名</td>
 
-            <td><%= f.text_field :name, class: 'form-control border-dark', placeholder: '商品名' %></td>
+            <td><%= f.text_field :name, class: 'form-control border-dark w-75', placeholder: '商品名' %></td>
           </tr>
 
           <tr>
             <td>商品説明</td>
 
-            <td><%= f.text_area :introduction, class: 'form-control border-dark', placeholder: 'ここに説明文を記述します' %></td>
+            <td><%= f.text_area :introduction, class: 'form-control border-dark w-75', placeholder: 'ここに説明文を記述します' %></td>
           </tr>
 
           <tr>
             <td>ジャンル</td>
 
             <td>
-              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--", class: 'w-100' %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, class: ' w-75', include_blank: "--選択して下さい--" %>
             </td>
           </tr>
 
           <tr>
             <td>税抜価格</td>
 
-            <td><%= f.number_field :price, class: 'form-control border-dark', placeholder: '1000' %></td>
+            <td>
+              <div class="d-flex">
+                <div class="w-75">
+                  <%= f.number_field :price, class: 'form-control border-dark', placeholder: '1000' %>
+                </div>
+
+                <p>円</p>
+              </div>
+            </td>
           </tr>
 
           <tr>
@@ -58,7 +66,6 @@
                   <%= f.label :is_active, '販売停止中', value: false %>
                 </div>
               </div>
-            </div>
             </td>
           </tr>
         </tbody>
